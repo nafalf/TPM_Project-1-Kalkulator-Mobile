@@ -133,49 +133,7 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
           ),
-        ),void _login() {
-  String username = _usernameController.text;
-  String password = _passwordController.text;
-
-  print('Login attempt with username: $username and password: $password');
-
-  // Contoh validasi sederhana
-  if (username == "user" && password == "1234") {
-    print('Login successful');
-    // Berpindah ke halaman utama jika login berhasil
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => MainMenu()), // Pastikan MainMenu ada di main.dart
-    );
-  } else {
-    print('Login failed');
-    // Menampilkan pesan jika login gagal
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("Username atau password salah!")),
-    );
-  }
-}void _login() {
-  String username = _usernameController.text;
-  String password = _passwordController.text;
-
-  print('Login attempt with username: $username and password: $password');
-
-  // Contoh validasi sederhana
-  if (username == "user" && password == "1234") {
-    print('Login successful');
-    // Berpindah ke halaman utama jika login berhasil
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => MainMenu()), // Pastikan MainMenu ada di main.dart
-    );
-  } else {
-    print('Login failed');
-    // Menampilkan pesan jika login gagal
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("Username atau password salah!")),
-    );
-  }
-}
+        ),
       ),
     );
   }
