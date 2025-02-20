@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'login.dart'; 
 import 'our_team.dart';
+import 'calculator_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -61,7 +62,12 @@ class MainMenu extends StatelessWidget {
                   );
                 }),
                 _buildMenuItem(Icons.format_list_numbered, "GANJIL/GENAP", () {}),
-                _buildMenuItem(Icons.calculate, "KALKULATOR", () {}),
+                _buildMenuItem(Icons.calculate, "KALKULATOR", () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CalculatorPage()),
+                  );
+                }),
                 _buildMenuItem(Icons.help_outline, "JUMLAH TOTAL ANGKA", () {}),
               ],
             ),
