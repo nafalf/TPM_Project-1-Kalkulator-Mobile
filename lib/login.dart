@@ -1,5 +1,19 @@
 import 'package:flutter/material.dart';
-import 'main.dart'; 
+import 'main.dart'; // Pastikan ini mengarah ke file main.dart Anda
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: LoginPage(),
+    );
+  }
+}
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -21,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
       // Berpindah ke halaman utama jika login berhasil
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => MainMenu()),
+        MaterialPageRoute(builder: (context) => MainMenu()), // Pastikan MainMenu ada di main.dart
       );
     } else {
       // Menampilkan pesan jika login gagal
@@ -34,49 +48,134 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF8E9F0), // Warna background
+      backgroundColor: Colors.grey[100],
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                "Login",
-                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 20),
-              TextField(
-                controller: _usernameController,
-                decoration: InputDecoration(
-                  labelText: "Username",
-                  border: OutlineInputBorder(),
+          child: Container(
+            padding: EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black12,
+                  blurRadius: 10,
+                  spreadRadius: 2,
                 ),
-              ),
-              SizedBox(height: 15),
-              TextField(
-                controller: _passwordController,
-                decoration: InputDecoration(
-                  labelText: "Password",
-                  border: OutlineInputBorder(),
+              ],
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'USER LOGIN',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.purple,
+                  ),
                 ),
-                obscureText: true, // Menyembunyikan input password
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _login,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.purple,
-                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 12),
+                SizedBox(height: 10),
+                Text(
+                  'Yuk, login dulu untuk mulai menggunakan aplikasi!',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.grey),
                 ),
-                child: Text(
-                  "Login",
-                  style: TextStyle(fontSize: 18, color: Colors.white),
+                SizedBox(height: 20),
+                TextField(
+                  controller: _usernameController,
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.person, color: Colors.grey),
+                    hintText: 'Username',
+                    filled: true,
+                    fillColor: Colors.purple[100],
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
                 ),
-              ),
-            ],
+                SizedBox(height: 10),
+                TextField(
+                  controller: _passwordController,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.lock, color: Colors.grey),
+                    hintText: 'Password',
+                    filled: true,
+                    fillColor: Colors.purple[100],
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.purple,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    minimumSize: Size(double.infinity, 50),
+                  ),
+                  onPressed: _login,
+                  child: Text(
+                    'LOGIN',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
+        ),void _login() {
+  String username = _usernameController.text;
+  String password = _passwordController.text;
+
+  print('Login attempt with username: $username and password: $password');
+
+  // Contoh validasi sederhana
+  if (username == "user" && password == "1234") {
+    print('Login successful');
+    // Berpindah ke halaman utama jika login berhasil
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => MainMenu()), // Pastikan MainMenu ada di main.dart
+    );
+  } else {
+    print('Login failed');
+    // Menampilkan pesan jika login gagal
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text("Username atau password salah!")),
+    );
+  }
+}void _login() {
+  String username = _usernameController.text;
+  String password = _passwordController.text;
+
+  print('Login attempt with username: $username and password: $password');
+
+  // Contoh validasi sederhana
+  if (username == "user" && password == "1234") {
+    print('Login successful');
+    // Berpindah ke halaman utama jika login berhasil
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => MainMenu()), // Pastikan MainMenu ada di main.dart
+    );
+  } else {
+    print('Login failed');
+    // Menampilkan pesan jika login gagal
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text("Username atau password salah!")),
+    );
+  }
+}
       ),
     );
   }
