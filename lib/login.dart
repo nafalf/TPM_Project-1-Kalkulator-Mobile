@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'main.dart'; // Pastikan ini mengarah ke file main.dart Anda
+import 'main.dart'; 
 
 void main() {
   runApp(MyApp());
