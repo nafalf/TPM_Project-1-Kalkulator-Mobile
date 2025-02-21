@@ -36,7 +36,7 @@ class OurTeamPage extends StatelessWidget {
                     _buildTeamMember("assets/profile2.jpg", "M. NAUFAL FAUZI ALI", "123220207"),
                   ],
                 ),
-                _buildTeamMember("assets/profile3.jpg", "RAFIQ IKHWAN", "123220"),
+                _buildTeamMember("assets/profile3.jpg", "RAFIQ IKHWAN", "123220071"),
               ],
             ),
           ),

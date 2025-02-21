@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'login.dart';
 import 'our_team.dart';
 import 'calculator_page.dart';
+<<<<<<< HEAD
 import 'jumlah.dart';
 
+=======
+import 'GanjilGenapPage.dart';
+>>>>>>> a81950e (huhu)
 
 void main() {
   runApp(const MyApp());
@@ -63,7 +67,12 @@ class MainMenu extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => OurTeamPage()),
                   );
                 }),
-                _buildMenuItem(Icons.format_list_numbered, "GANJIL/GENAP", () {}),
+                _buildMenuItem(Icons.format_list_numbered, "GANJIL/GENAP", () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => GanjilGenapPage()),
+                  );
+                }),
                 _buildMenuItem(Icons.calculate, "KALKULATOR", () {
                   Navigator.push(
                     context,
