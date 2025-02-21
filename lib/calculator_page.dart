@@ -9,21 +9,25 @@ class CalculatorPage extends StatefulWidget {
 
 class _CalculatorPageState extends State<CalculatorPage> {
   TextEditingController inputController = TextEditingController();
-  String result = "  ";
+  String result = "   ";
 
   void calculateResult() {
     try {
-      // Ganti koma (,) dengan titik (.) untuk angka desimal
+      // Standarisasi input: Ubah semua koma (`,`) menjadi titik (`.`)
       String sanitizedInput = inputController.text.replaceAll(',', '.');
 
-      // Ekstrak angka dan operator
-      RegExp numberPattern = RegExp(r'[\d.]+');
+      // Ekstrak angka dan operator dengan regex 
+      RegExp numberPattern = RegExp(r'\d+(\.\d+)?'); 
       RegExp operatorPattern = RegExp(r'[+-]');
 
-      List<String> numbers =
-          numberPattern.allMatches(sanitizedInput).map((e) => e.group(0)!).toList();
-      List<String> operators =
-          operatorPattern.allMatches(sanitizedInput).map((e) => e.group(0)!).toList();
+      List<String> numbers = numberPattern
+          .allMatches(sanitizedInput)
+          .map((e) => e.group(0)!)
+          .toList();
+      List<String> operators = operatorPattern
+          .allMatches(sanitizedInput)
+          .map((e) => e.group(0)!)
+          .toList();
 
       if (numbers.isEmpty) {
         setState(() {
@@ -111,7 +115,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
               ),
               child: TextField(
                 controller: inputController,
-                keyboardType: TextInputType.number,
+                keyboardType: TextInputType.numberWithOptions(decimal: true),
                 style: TextStyle(fontSize: 20),
                 decoration: InputDecoration(
                   border: InputBorder.none,
