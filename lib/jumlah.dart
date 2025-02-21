@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'main.dart'; // Import the main.dart file to access MainMenu
 
 void main() {
   runApp(JumlahAngkaApp());
@@ -59,7 +60,10 @@ class _JumlahAngkaPageState extends State<JumlahAngkaPage> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => MainMenu()),
+            );
           },
         ),
       ),
