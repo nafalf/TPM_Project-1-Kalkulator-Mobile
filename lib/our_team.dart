@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class OurTeamPage extends StatelessWidget {
   const OurTeamPage({super.key});
 
@@ -31,12 +32,10 @@ class OurTeamPage extends StatelessWidget {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _buildTeamMember("assets/profile.jpg", "SYIFA NUR RAMADHANI", "123220194"),
-                    _buildTeamMember("assets/profile2.jpg", "M. NAUFAL FAUZI ALI", "123220207"),
-                  ],
                 ),
                 _buildTeamMember("assets/profile3.jpg", "RAFIQ IKHWAN NUGRAHA", "123220071"),
+                _buildTeamMember("assets/profile.jpg", "SYIFA NUR RAMADHANI", "123220194"),
+                _buildTeamMember("assets/profile2.jpg", "MUH. NAUFAL FAUZI ALI", "123220207"),
               ],
             ),
           ),
