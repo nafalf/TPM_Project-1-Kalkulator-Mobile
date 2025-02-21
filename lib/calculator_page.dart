@@ -9,17 +9,28 @@ class CalculatorPage extends StatefulWidget {
 
 class _CalculatorPageState extends State<CalculatorPage> {
   TextEditingController inputController = TextEditingController();
-  String result = "     ";
-  String operation = "+";
+  String result = "  ";
 
   void calculateResult() {
     try {
-      List<String> numbers = inputController.text.split(RegExp(r'[+-]'));
-      List<String> operators = inputController.text
-          .replaceAll(RegExp(r'[0-9]'), '') // Hapus angka
-          .split('');
+      // Ganti koma (,) dengan titik (.) untuk angka desimal
+      String sanitizedInput = inputController.text.replaceAll(',', '.');
 
-      if (numbers.isEmpty || operators.isEmpty) return;
+      // Ekstrak angka dan operator
+      RegExp numberPattern = RegExp(r'[\d.]+');
+      RegExp operatorPattern = RegExp(r'[+-]');
+
+      List<String> numbers =
+          numberPattern.allMatches(sanitizedInput).map((e) => e.group(0)!).toList();
+      List<String> operators =
+          operatorPattern.allMatches(sanitizedInput).map((e) => e.group(0)!).toList();
+
+      if (numbers.isEmpty) {
+        setState(() {
+          result = "ERROR";
+        });
+        return;
+      }
 
       double total = double.parse(numbers[0]);
 
