@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'login.dart'; 
+import 'login.dart';
 import 'our_team.dart';
 import 'calculator_page.dart';
-import 'GanjilGenapPage.dart';
 import 'jumlah.dart';
+import 'GanjilGenapPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +20,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 
 class MainMenu extends StatelessWidget {
   const MainMenu({super.key});
@@ -42,14 +41,9 @@ class MainMenu extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Container(
-              padding: EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: Colors.pink.shade100,
-                borderRadius: BorderRadius.circular(20),
-              ),
               child: Text(
-                "Menu Utama",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                "MENU UTAMA",
+                style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.white),
               ),
             ),
           ),
@@ -75,12 +69,12 @@ class MainMenu extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => CalculatorPage()),
                   );
                 }),
-                _buildMenuItem(Icons.help_outline, "JUMLAH TOTAL ANGKA", () {
+                _buildMenuItem(Icons.help_outline, "JUMLAH ANGKA", () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => JumlahAngkaApp()),
+                    MaterialPageRoute(builder: (context) => JumlahAngkaPage()),
                   );
-                }),
+                }), 
               ],
             ),
           ),
@@ -95,7 +89,7 @@ class MainMenu extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon, size: 60, color: Colors.white),
+          Icon(icon, size: 100, color: Colors.white),
           SizedBox(height: 10),
           Text(
             label,
