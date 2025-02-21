@@ -8,7 +8,6 @@ Anggota:
 
 - Figma: https://www.figma.com/design/iePjjrjW9EiAyrSEkdF9mZ/Mobile-Teori?t=qdbUS54YJZWIoLlM-1
 - PPT  : https://www.canva.com/design/DAGfvV5T_-M/uIJMq8nzif8tFaL8nBgOTA/edit
-- 
 # tugas_2
 
 A new Flutter project.
