@@ -1,5 +1,19 @@
 import 'package:flutter/material.dart';
 
+void main() {
+  runApp(JumlahAngkaApp());
+}
+
+class JumlahAngkaApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: JumlahAngkaPage(),
+    );
+  }
+}
+
 class JumlahAngkaPage extends StatefulWidget {
   const JumlahAngkaPage({super.key});
 
@@ -17,7 +31,9 @@ class _JumlahAngkaPageState extends State<JumlahAngkaPage> {
     // Ambil hanya angka dari input
     String digitsOnly = input.replaceAll(RegExp(r'[^0-9]'), '');
     int count = digitsOnly.length;
-    int sum = digitsOnly.split('').fold(0, (prev, element) => prev + int.parse(element));
+    int sum = digitsOnly
+        .split('')
+        .fold(0, (prev, element) => prev + int.parse(element));
 
     setState(() {
       countResult = count.toString();
@@ -164,4 +180,3 @@ class _JumlahAngkaPageState extends State<JumlahAngkaPage> {
     );
   }
 }
-

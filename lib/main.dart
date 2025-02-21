@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'login.dart';
+import 'login.dart'; 
 import 'our_team.dart';
 import 'calculator_page.dart';
-<<<<<<< HEAD
-import 'jumlah.dart';
-
-=======
 import 'GanjilGenapPage.dart';
->>>>>>> a81950e (huhu)
+import 'jumlah.dart';
 
 void main() {
   runApp(const MyApp());
@@ -82,9 +78,9 @@ class MainMenu extends StatelessWidget {
                 _buildMenuItem(Icons.help_outline, "JUMLAH TOTAL ANGKA", () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => JumlahAngkaPage()),
+                    MaterialPageRoute(builder: (context) => JumlahAngkaApp()),
                   );
-                }), 
+                }),
               ],
             ),
           ),

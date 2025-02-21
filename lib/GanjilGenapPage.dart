@@ -149,4 +149,8 @@ class _GanjilGenapScreenState extends State<GanjilGenapScreen> {
       ),
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> f5ca79d (update jumlah)
