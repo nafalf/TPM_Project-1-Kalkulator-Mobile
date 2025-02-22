@@ -1,102 +1,201 @@
 import 'package:flutter/material.dart';
-import 'login.dart';
-import 'our_team.dart';
-import 'calculator_page.dart';
-import 'jumlah.dart';
-import 'GanjilGenapPage.dart';
+import 'main.dart'; // Import the main.dart file to access MainMenu
 
 void main() {
-  runApp(const MyApp());
+  runApp(JumlahAngkaApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class JumlahAngkaApp extends StatelessWidget {
+  const JumlahAngkaApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(), // Aplikasi dimulai dari halaman login
+      home: JumlahAngkaPage(),
     );
   }
 }
 
-class MainMenu extends StatelessWidget {
-  const MainMenu({super.key});
+class JumlahAngkaPage extends StatefulWidget {
+  const JumlahAngkaPage({super.key});
+
+  @override
+  _JumlahAngkaPageState createState() => _JumlahAngkaPageState();
+}
+
+class _JumlahAngkaPageState extends State<JumlahAngkaPage> {
+  TextEditingController inputController = TextEditingController();
+  String countResult = "";
+  String sumResult = "";
+
+  void calculateCountAndSum() {
+    String input = inputController.text;
+    String digitsOnly = input.replaceAll(RegExp(r'[^0-9]'), '');
+    int count = digitsOnly.length;
+    int sum = digitsOnly
+        .split('')
+        .fold(0, (prev, element) => prev + int.parse(element));
+
+    setState(() {
+      countResult = count.toString();
+      sumResult = sum.toString();
+    });
+  }
+
+  void clearInput() {
+    setState(() {
+      inputController.clear();
+      countResult = "";
+      sumResult = "";
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF2E2E5D), 
+      backgroundColor: Color(0xFFF8E9F0),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () {}, // Fungsi kembali 
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => MainMenu()),
+            );
+          },
         ),
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Container(
-              child: Text(
-                "MENU UTAMA",
-                style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.white),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              "JUMLAH ANGKA",
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF611EB4),
               ),
             ),
-          ),
-          Expanded(
-            child: GridView.count(
-              crossAxisCount: 2,
+            SizedBox(height: 12),
+            Text(
+              "Silahkan input angka untuk melihat berapa Jumlahnya!",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.black87,
+              ),
+            ),
+            SizedBox(height: 20),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              decoration: BoxDecoration(
+                color: Colors.purple.shade100,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: TextField(
+                controller: inputController,
+                keyboardType: TextInputType.number,
+                style: TextStyle(fontSize: 20),
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                ),
+              ),
+            ),
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _buildMenuItem(Icons.group, "OUR TEAM", () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => OurTeamPage()),
-                  );
-                }),
-                _buildMenuItem(Icons.format_list_numbered, "GANJIL/GENAP", () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => GanjilGenapPage()),
-                  );
-                }),
-                _buildMenuItem(Icons.calculate, "KALKULATOR", () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => CalculatorPage()),
-                  );
-                }),
-                _buildMenuItem(Icons.help_outline, "JUMLAH ANGKA", () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => JumlahAngkaPage()),
-                  );
-                }), 
+                _buildButton("C", clearInput),
+                SizedBox(width: 16),
+                _buildButton("=", calculateCountAndSum),
               ],
             ),
-          ),
-        ],
+            SizedBox(height: 20),
+            Container(
+              padding: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.purple.shade100,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Jumlah Input Angka",
+                        style: TextStyle(fontSize: 16, color: Colors.black87),
+                      ),
+                      Container(
+                        width: 50,
+                        height: 30,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Text(
+                          countResult,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.purple.shade900,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 12),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Jumlah Total",
+                        style: TextStyle(fontSize: 16, color: Colors.black87),
+                      ),
+                      Container(
+                        width: 50,
+                        height: 30,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Text(
+                          sumResult,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.purple.shade900,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 
-  Widget _buildMenuItem(IconData icon, String label, VoidCallback onTap) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon, size: 100, color: Colors.white),
-          SizedBox(height: 10),
-          Text(
-            label,
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-        ],
+  Widget _buildButton(String label, VoidCallback onTap) {
+    return ElevatedButton(
+      onPressed: onTap,
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Color(0xFF611EB4),
+        padding: EdgeInsets.all(20),
+        shape: CircleBorder(),
+      ),
+      child: Text(
+        label,
+        style: TextStyle(fontSize: 20, color: Colors.white),
       ),
     );
-  }
-}
